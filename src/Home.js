@@ -4,23 +4,17 @@ import WeatherData from './WeatherData'
 const Home = () => {
     
     const [data, setData] = useState(null);
-    ///use props.loca instead of loca;
-    //const loca = props.loca;
 
     const [loca, setLoca] = useState('New York');
     
     const searchClickHandler = (text) => {
-        // you can use search bar text from child component
         setLoca(text);
     }
 
-
-    // const handleSubmit = (e) => {
-    //     setLoca(e);
-    // };
-    
     useEffect(() => {
-        const apiKey = '0f976a350c52b32cd8a0c9b854538ebb';
+        // const apiKey = apikey;
+        const apiKey =process.env.REACT_APP_API_KEY;
+        
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${loca}&units=imperial&appid=${apiKey}`;
 
         fetch(url)
@@ -35,7 +29,7 @@ const Home = () => {
             console.log(data.name);
             setData(data);
         });
-    })
+    });
 
     
     return ( 

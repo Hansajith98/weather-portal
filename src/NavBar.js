@@ -1,36 +1,16 @@
 import { Link } from 'react-router-dom'
-import {useState} from 'react';
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
-const NavBar = (props) => {
-    const [getState, setGetState] = useState('');
-    const [state, setState] = useState('');
-
-    const inputHandler = (event) => {
-        setGetState(event.target.value);
-      };
-      
-    const submitHandler = () => {
-        setState(getState);
-        props.set_current_state(getState);
-    };
+const NavBar = () => {
+    const {auth , toggleAuth} = useContext(AuthContext);
 
     return ( 
         <nav className="navbar">
             <Link className="nlink" to="/">Weather Portal</Link>
-            <div className="links d-block">
-                <div className="col-auto">
-                <input
-                    type="text"
-                    id="location-name"
-                    className="form-control"
-                    onChange={inputHandler}
-                    value={getState} placeholder='Enter the location'
-                />
-                </div>
-                <button className="btn btn-primary mt-2" onClick={submitHandler}>
-                    Search
-                </button>              
-            </div>
+            <button onClick={() => toggleAuth()}>
+                {auth ? 'Logged In': 'Logged Out'}
+            </button>
         </nav>
      );
 }

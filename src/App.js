@@ -1,20 +1,23 @@
 import NavBar from './NavBar';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Switch} from 'react-router-dom'
 import Home from './Home';
-import {useState} from 'react';
+// import { ThemeContext } from './ThemeContext';
+import AuthContextProvider from './AuthContext';
 
 function App() {
-  const [current_state, setCurrentState] = useState('London');
-
   return (
     <Router>
       <div className="App">
-        <NavBar set_current_state={setCurrentState}></NavBar>
+      <AuthContextProvider>
+     
+        <NavBar></NavBar>
         <div className="component">
           <Switch>
-            <Home loca={current_state}></Home>
+            <Home></Home>
           </Switch>
         </div>
+        
+      </AuthContextProvider>
       </div>
     </Router>
   );

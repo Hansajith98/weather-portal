@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState,useContext} from 'react'
+// import { ThemeContext } from './ThemeContext';
 
-const WeatherData = ({datas,loca,setLoca,handleSubmit,clickFromChild}) => {
+const WeatherData = ({datas,loca,clickFromChild}) => {
     
     const FarenheitToCelcius = (k) => {
         var fc = (k - 32) * 5 / 9;
@@ -12,8 +13,9 @@ const WeatherData = ({datas,loca,setLoca,handleSubmit,clickFromChild}) => {
     const [far, setFar] = useState(false);
     const [style, setStyle] = useState({style1 : null,style2: 'green'});
 
-    // const [getState, setGetState] = useState('');
-    // const [state, setState] = useState('');
+    // const {isLightTheme, dark, light} = useContext(ThemeContext);
+    // const theme = isLightTheme ? light: dark;
+
     const [text, setText] = useState('');
     //const [style2, setStyle2] = useState(null);
 
@@ -29,29 +31,16 @@ const WeatherData = ({datas,loca,setLoca,handleSubmit,clickFromChild}) => {
         setStyle({ style1 : null, style2: 'green' });
         //setStyle2('green');
     };
-
-    // const inputHandler = (event) => {
-    //     setGetState(event.target.value);
-    // };
-      
-    // const submitHandler = () => {
-    //     setState(setLoca);
-    //     // setGetState(null);
-    //     //props.set_current_state(getState);
-    // };
-    
+ 
     return ( 
-        <div className="card border border-dark mb-3 mx-auto">
+        <div className="card border border-dark mb-3 mx-auto" >
             {loca}
             <div className="links d-block">
                 <div className="col-auto">
                 <input
                     type="text"
                     className="form-control"
-                    // onChange={inputHandler}
-                    // onChange={(e) => handleSubmit(e.target.value)}
                     onChange={(e) => setText(e.target.value)} 
-                    // value={getState} 
                     placeholder='Enter the location'
                 />
                 </div>
